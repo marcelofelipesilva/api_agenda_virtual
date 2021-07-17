@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api_agenda_virtual.model.*;
@@ -21,5 +21,10 @@ public class TarefasController {
         return _tarefasRepository.findAll();
     }
 
+	@PostMapping(value="/tarefas", produces = "application/json")
+	public <S extends Tarefas> S Cadastro_Tarefas(S entity) {
+
+		return _tarefasRepository.saveAndFlush(entity);
+	}
 
 }
