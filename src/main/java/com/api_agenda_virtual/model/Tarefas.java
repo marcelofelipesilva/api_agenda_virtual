@@ -16,10 +16,10 @@ import lombok.NoArgsConstructor;
 public class Tarefas {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idTarefa;
+	private Long idTarefa;
 	
 	private String nome;
 	private String decricao;
-	private Data dataEntrega;
+	private String dataEntrega;
 
 }
