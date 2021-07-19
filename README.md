@@ -1,6 +1,6 @@
 ##  Api Agenda Virtual Spring Boot REST API
 
- **Api escrita em java com objetivo de criar uma agenda virtual online**
+ **Api escrita em java com o objetivo de criar uma agenda virtual online**
  
 ######  **Tecnologias usadas no projeto:**
 
@@ -23,3 +23,5 @@ um nome, email e telefone. O sistema ainda deverá permitir a listagem dos conta
 exclusão e atualização dos dados de um contato.
 A agenda deverá permitir ao usuário cadastrar novas tarefas. Cada tarefa deverá ser
 composta de um nome, data de entrega e descrição da tarefa.
+
+http://localhost:8080//swagger-ui.html
