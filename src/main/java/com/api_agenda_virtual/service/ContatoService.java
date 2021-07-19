@@ -27,6 +27,13 @@ public class ContatoService {
 		return contato.getById(id);
 	}
 
+	public Contato save(Contato entity) {
+		contato.save(entity);
+		Long id = entity.getIdContato();
+		return contato.getById(id);
+		
+	}
+	
 	public void deleteById(Long id) {
 		contato.deleteById(id);
 	}

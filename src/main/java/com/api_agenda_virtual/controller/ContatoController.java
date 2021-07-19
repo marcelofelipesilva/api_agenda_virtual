@@ -5,13 +5,17 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.api_agenda_virtual.model.Contato;
 import com.api_agenda_virtual.repository.ContatoRepository;
+import com.google.common.base.Optional;
 
 @RestController("/contato")
 public class ContatoController {
@@ -20,12 +24,12 @@ public class ContatoController {
 	private ContatoRepository _contatoRepository;
 
 	@GetMapping(value = "/contato", produces = "application/json")
-	public List<Contato> FindAll() {
+	public List<Contato> Exibir_Contatos() {
 		return _contatoRepository.findAll();
 	}
 
 	@GetMapping(value = "/contato/{id}", produces = "application/json")
-	public ResponseEntity<Contato> GetById(@PathVariable(value = "id") long id) {
+	public ResponseEntity<Contato> Exibir_Contato_Id(@PathVariable(value = "id") long id) {
 		java.util.Optional<Contato> contato = _contatoRepository.findById(id);
 		if (contato.isPresent())
 			return new ResponseEntity<Contato>(contato.get(), HttpStatus.OK);
@@ -39,8 +43,24 @@ public class ContatoController {
 		return _contatoRepository.saveAndFlush(entity);
 	}
 	
+	 @PutMapping(value = "/contato/{id}", produces="application/json")
+	    public ResponseEntity<Contato> Atualizar_Contato(@PathVariable(value = "id") long id, @Validated @RequestBody Contato newContato)
+	    {
+		 java.util.Optional<Contato> oldContato = _contatoRepository.findById(id);
+	        if(oldContato.isPresent()){
+	        	Contato contato = oldContato.get();
+	        	contato.setNome(newContato.getNome());
+	        	contato.setEmail(newContato.getEmail());
+	        	contato.setTelefone(newContato.getTelefone());
+	            _contatoRepository.save(contato);
+	            return new ResponseEntity<Contato>(contato, HttpStatus.OK);
+	        }
+	        else
+	            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	    }
+	
 	 @DeleteMapping(value = "/contato/{id}", produces="application/json")
-	    public ResponseEntity<Contato> Delete(@PathVariable(value = "id") long id)
+	    public ResponseEntity<Contato> Deletar_Contato(@PathVariable(value = "id") long id)
 	    {
 		 java.util.Optional<Contato> contato = _contatoRepository.findById(id);
 	        if(contato.isPresent()){
