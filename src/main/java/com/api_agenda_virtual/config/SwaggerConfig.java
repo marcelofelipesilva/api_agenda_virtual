@@ -1,4 +1,4 @@
-package com.api_agenda_virtual;
+package com.api_agenda_virtual.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
