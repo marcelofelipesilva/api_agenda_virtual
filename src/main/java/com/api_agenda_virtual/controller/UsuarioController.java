@@ -20,8 +20,12 @@ import com.api_agenda_virtual.model.*;
 @RestController("/usuario")
 public class UsuarioController {
 
-	@Autowired
+
 	private UsuarioRepository _usuarioRepository;
+
+	public UsuarioController(UsuarioRepository _usuarioRepository) {
+		this._usuarioRepository = _usuarioRepository;
+	}
 
 	@GetMapping(value = "/usuario", produces = "application/json")
 	public List<Usuario> Exibir_Usuarios() {
