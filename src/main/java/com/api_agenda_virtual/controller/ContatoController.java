@@ -20,8 +20,12 @@ import com.google.common.base.Optional;
 @RestController("/contato")
 public class ContatoController {
 
-	@Autowired
+
 	private ContatoRepository _contatoRepository;
+
+	public ContatoController(ContatoRepository _contatoRepository) {
+		this._contatoRepository = _contatoRepository;
+	}
 
 	@GetMapping(value = "/contato", produces = "application/json")
 	public List<Contato> Exibir_Contatos() {
