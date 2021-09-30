@@ -20,8 +20,12 @@ import com.api_agenda_virtual.repository.*;
 @RestController("/tarefas")
 public class TarefasController {
 
-	@Autowired
+
 	private TarefasRepository _tarefasRepository;
+
+	public TarefasController(TarefasRepository _tarefasRepository) {
+		this._tarefasRepository = _tarefasRepository;
+	}
 
 	@GetMapping(value = "/tarefas", produces = "application/json")
 	public List<Tarefas> Exibir_Tarefas() {
