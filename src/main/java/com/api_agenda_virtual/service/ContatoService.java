@@ -11,8 +11,12 @@ import com.api_agenda_virtual.repository.ContatoRepository;
 @Transactional
 public class ContatoService {
 
-	@Autowired
+
 	private ContatoRepository contato;
+
+	public ContatoService(ContatoRepository contato) {
+		this.contato = contato;
+	}
 
 	public List<Contato> findAll() {
 		return contato.findAll();
