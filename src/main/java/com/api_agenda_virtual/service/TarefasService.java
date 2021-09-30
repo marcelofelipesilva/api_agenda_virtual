@@ -9,8 +9,12 @@ import com.api_agenda_virtual.repository.TarefasRepository;
 
 public class TarefasService {
 
-	@Autowired
+
 	private TarefasRepository tarefas;
+
+	public TarefasService(TarefasRepository tarefas) {
+		this.tarefas = tarefas;
+	}
 
 	public List<Tarefas> findAll() {
 		return tarefas.findAll();
