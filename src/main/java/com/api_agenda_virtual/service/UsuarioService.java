@@ -9,8 +9,12 @@ import com.api_agenda_virtual.repository.UsuarioRepository;
 
 public class UsuarioService {
 
-	@Autowired
+
 	private UsuarioRepository usuario;
+
+	public UsuarioService(UsuarioRepository usuario) {
+		this.usuario = usuario;
+	}
 
 	public List<Usuario> findAll() {
 		return usuario.findAll();
