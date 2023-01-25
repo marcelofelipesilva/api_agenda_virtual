@@ -3,21 +3,17 @@ package com.api_agenda_virtual.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.api_agenda_virtual.model.*;
 import com.api_agenda_virtual.repository.*;
 
 @RestController("/tarefas")
+@Scope("singleton")
 public class TarefasController {
 
 
@@ -28,6 +24,7 @@ public class TarefasController {
 	}
 
 	@GetMapping(value = "/tarefas", produces = "application/json")
+	@ResponseStatus(HttpStatus.OK)
 	public List<Tarefas> Exibir_Tarefas() {
 		return _tarefasRepository.findAll();
 	}
@@ -42,6 +39,7 @@ public class TarefasController {
 	}
 
 	@PostMapping(value = "/tarefas", produces = "application/json")
+	@ResponseStatus(HttpStatus.CREATED)
 	public <S extends Tarefas> S Cadastro_Tarefas(S entity) {
 
 		return _tarefasRepository.saveAndFlush(entity);
